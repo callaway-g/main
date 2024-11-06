@@ -45,6 +45,23 @@
        * 全部
 
             `docker ps -a`
+* レジストリ関連
+    1. 起動
+
+        `docker run -d -p 5000:5000 --name [レジストリ名] registry:latest`
+    2. タグ付け
+
+        `docker image tag [イメージ名] localhost:5000/[タグ名]`
+    3. プッシュ
+
+        `docker push localhost:5000/[タグ名]`
+    4. プル
+
+        `docker pull localhost:5000/[タグ名]`
+    5. レジストリを停止して全データを削除
+
+        `docker container stop [レジストリ名] && docker container rm -v [レジストリ名]`
+
 * 全般
 
     1. help表示
