@@ -1,6 +1,4 @@
-# gobuster
-
-* Gobuster
+# Gobuster
   
 1. WebサイトのURLやDNSサブドメイン名を洗い出すツール
 2. コマンド例

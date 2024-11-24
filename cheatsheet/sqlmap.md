@@ -1,7 +1,5 @@
 # sqlmap
 
-* sqlmap
-
 1. SQLインジェクションの脆弱性診断ツール
 2. コマンド
    1. BurpSuiteでSQL操作時のリクエストを観測 GETリクエストとCookieでセッションIDを保持しているか。

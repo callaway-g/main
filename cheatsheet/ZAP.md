@@ -1,6 +1,4 @@
-# ZAP
-
-* ZAP(Zed Attack Proxy)
+# ZAP(Zed Attack Proxy)
 
 1. プロキシを用いたWebアプリ用の脆弱性診断ツール
 2. 主要機能

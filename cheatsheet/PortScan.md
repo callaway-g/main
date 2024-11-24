@@ -3,10 +3,18 @@
 1. ping sweet サンプル
 
     ``` shell
-    for i in {1..254}; do ping xxx.yyy.zzz.$i -c 1 -W 1 | grep ttl | cut -d ' ' -f 4 | tr -d ':' >> ip_list.txt & done
+        for i in {1..254}; do ping xxx.yyy.zzz.$i -c 1 -W 1 | grep ttl | cut -d ' ' -f 4 | tr -d ':' >> ip_list.txt & done
+        #または
+        for i in {1..254};do (ping -c 1 XXX.XXX.XX.$i | grep "bytes from" &) ;done
     ```
 
-2. pingのレスポンスの違い
+2. 解放ポートや使用しているサービスの取得
+
+    ``` shell
+        ss -antu 
+    ```
+
+3. pingのレスポンスの違い
 
     | response | 状態                         |
     | :------: | ---------------------------- |
@@ -16,11 +24,21 @@
     |          | IPが存在しない               |
     |          | タイムアウト |
 
-3. バナーの取得
+4. バナーの取得
 `printf "HEAD /index.html HTTP/1.0\r\n\r\n" | nc XXX.YYY.ZZZ.AAA`
 
-4. バージョン情報の収集
+5. バージョン情報の収集
 
-```shell
-    nmap XXX.YYY.ZZZ.AAA -p 80 -sV | grep open
-```
+    ``` shell
+        nmap XXX.YYY.ZZZ.AAA -p 80 -sV | grep open
+    ```
+
+6. ncでポートスキャン
+    * シングルバイナリで実行できるので転送先で実行しやすい
+
+    ```shell
+        # tcp
+        nc -zv XXX.XXX.XXX.XXX
+        # udp
+        nc -uzv XXX.XXX.XXX.XXX
+    ```

