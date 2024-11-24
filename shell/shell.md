@@ -47,7 +47,7 @@
       python -m http.server 8000
       # 転送
       # wget -O [転送先] [転送するファイル]
-    wget -O /tmp/XXX http://XXX.XXX.XXX.XXX:8000/filename
+      wget -O /tmp/XXX http://XXX.XXX.XXX.XXX:8000/filename
   ```
 
 * pythonの仮想環境
@@ -64,7 +64,6 @@
   ```
 
 * マウントされているボリュームの取得
-  * 外部記憶装置が接続されていないか
   
   ``` shell
     mount
