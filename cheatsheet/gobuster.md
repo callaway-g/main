@@ -18,3 +18,12 @@
    4. -b: どのステータスコードが返ってきたらアクセスしたURLが存在しないと判定するかを指定できる。(-sを指定した場合は-b ''を指定する必要がある)
    5. -x: 検索するファイル拡張子(dirモードのみ有効) php、txt、htmlファイルを検索したい場合のコマンド例:-x 'php,txt,html'
    6. -e: 見つかったURLの表示に-uで指定したベースのURLを含めて表示する(expand)
+
+   ``` bash
+      # ディレクトリブルートフォース
+      gobuster dir -u "http://training" -w /usr/share/wordlists/dirbuster/directory-list-2.3-small.txt 
+
+      # 拡張子指定でのブルートフォース
+      gobuster dir -u "http://training/wordpress/" -w 
+      /usr/share/wordlists/dirbuster/directory-list-2.3-small.txt -x .php
+   ```

