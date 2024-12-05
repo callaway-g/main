@@ -42,3 +42,21 @@
         # udp
         nc -uzv XXX.XXX.XXX.XXX
     ```
+
+7. nc,nmapがないときの即席スキャン
+
+    ``` shell
+        nmap2 () {
+        [[ $# -ne 1 ]] && echo "Please provide server name" && return 1
+        
+        for i in {1..9000} ; do
+        SERVER="$1"
+        PORT=$i
+        (echo  > /dev/tcp/$SERVER/$PORT) >& /dev/null &&
+            echo "Port $PORT seems to be open"
+        done
+        }
+
+        nmap2 XXX.XXX.XXX.XXX
+        #解放ポートが返ってくる
+    ```
