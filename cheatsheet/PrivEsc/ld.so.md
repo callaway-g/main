@@ -3,7 +3,7 @@
 * 実行体に必要なsoを確認
 
 ``` shell
-  ldd <実行体>
+    ldd <実行体>
 ```
 
 * Cファイルの作成
@@ -25,5 +25,5 @@
 * soファイルコンパイル
 
 ``` shell
-     gcc -shared -o libcustom.so -fPIC libcustom.c
+    gcc -shared -o libcustom.so -fPIC libcustom.c
 ```

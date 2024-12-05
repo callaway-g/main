@@ -1,72 +1,114 @@
 # Docker コマンド
 
-* イメージ関連
-    1. DockerFileのビルド
-       * 普通
+## イメージ関連
 
-            `docker build -t <image_name>`
-       * キャッシュなし
+### DockerFileのビルド
 
-            `docker build -t <image_name> . –no-cache`
-    2. イメージ一覧
+``` shell
+    # 普通 
+    docker build -t <image_name>
 
-        `docker images`
-    3. イメージの削除
+    # キャッシュなし
+    docker build -t <image_name> . –no-cache
 
-        `docker rmi <image_name>`
-    4. 未使用のイメージ削除
+    # イメージ一覧
+    docker images
+```
 
-        `docker image prune`
-* コンテナー関連
-    1. 起動
-       * よく使う
+### イメージの削除
 
-            `docker run -d --name <container_name> -p <host_port>:<container_port> <image_name>`
-       * コンテナ停止時に削除
+``` shell
+    docker rmi <image_name>
 
-            `docker --rm <container_name>`
-    2. 起動中のコンテナで実行
-       * ステータス
+    # 未使用イメージの削除
+    docker image prune
+```
 
-            `docker container stats`
-    3. コンテナの停止
+## コンテナー関連
 
-        `docker stop <container_name> (or <container-id>)`
-    4. コンテナの削除
+### コンテナー起動
 
-        `docker rm <container_name>`
-    5. コンテナの開始
+``` shell
 
-        `docker start <container_name> (or <container-id>)`
-    6. コンテナ一覧の表示
-       * 起動中のみ
+    # よく使う
+    docker run -d --name <container_name> -p <host_port>:<container_port> <image_name>
 
-            `docker ps`
-       * 全部
+    # コンテナ停止時に削除
+    docker --rm <container_name>
+```
 
-            `docker ps -a`
-* レジストリ関連
-    1. 起動
+### 起動中のコンテナで実行
 
-        `docker run -d -p 5000:5000 --name [レジストリ名] registry:latest`
-    2. タグ付け
+``` shell
+    # ステータス
+    docker container stats
+```
 
-        `docker image tag [イメージ名] localhost:5000/[タグ名]`
-    3. プッシュ
+### コンテナの停止
 
-        `docker push localhost:5000/[タグ名]`
-    4. プル
+``` shell
+    docker stop <container_name> (or <container-id>)
+```
 
-        `docker pull localhost:5000/[タグ名]`
-    5. レジストリを停止して全データを削除
+### コンテナの削除
 
-        `docker container stop [レジストリ名] && docker container rm -v [レジストリ名]`
+``` shell
+    docker rm <container_name>
+```
 
-* 全般
+### コンテナの開始
 
-    1. help表示
+``` shell
+    docker start <container_name> (or <container-id>)
+```
 
-        `docker --help`
-    2. 情報表示
+### コンテナ一覧の表示
 
-        `docker info`
+```shell
+  # 起動中のみ
+    docker ps
+
+   # 全部
+    docker ps -a
+```
+  
+## レジストリ関連
+
+### レジストリ起動
+
+```shell
+    docker run -d -p 5000:5000 --name [レジストリ名] registry:latest
+```
+
+### タグ付け
+
+``` shell
+    docker image tag [イメージ名] localhost:5000/[タグ名]
+```
+
+### プッシュ
+
+``` shell
+    docker push localhost:5000/[タグ名]
+```
+
+### プル
+
+``` shell
+    docker pull localhost:5000/[タグ名]
+```
+
+### レジストリを停止して全データを削除
+
+``` shell
+    docker container stop [レジストリ名] && docker container rm -v [レジストリ名]
+```
+
+## 全般
+
+``` shell
+# help表示
+    docker --help
+# 情報表示
+    docker info
+```

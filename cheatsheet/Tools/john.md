@@ -1,6 +1,6 @@
 # john the ripper
 
-* ハッシュファイルからのクラック
+## ハッシュファイルからのクラック
 
 ``` shell
     # passwdとshadowをハッシュ化
@@ -10,7 +10,7 @@
     cat /home/kali/.john/john/pot
 ```
 
-* zipのパスワードクラック
+## zipのパスワードクラック
   
 ``` shell
     zip2john <zip_file> > hash.txt
