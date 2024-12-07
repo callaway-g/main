@@ -82,6 +82,13 @@
       netstat -pantu
   ```
 
+* openssl
+  
+```shell
+  # pass123のソルトハッシュ値の生成
+  openssl passwd -1 -salt -ignite pass123
+```
+
 * パスワード変更
 
   ```shell
@@ -107,6 +114,11 @@
       pip install <package_name>
       #作業後仮想環境を無効化
       deactivate
+
+      #virtualenvをバージョン指定でインストール
+      python3 -m pip install virtualenv==XX.XX.X
+      #Venvのpythonバージョン指定の起動
+      python3 -m virtualenv --python=/usr/bin/pythonX.X.X myenv
   ```
 
 * sftp

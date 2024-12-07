@@ -5,13 +5,13 @@ WebサイトのURLやDNSサブドメイン名を洗い出すツール
 ## コマンド例
 
 ``` bash
-   gobuster dir -u WebアプリのIP -w /usr/share/seclists/Discovery/Web-Content/common.txt -s '200,204,301,302,307,403,500' -b '' -e
+   gobuster dir -u WebアプリのIP -w <wordlists> -s '200,204,301,302,307,403,500' -b '' -e
 
    # ディレクトリブルートフォース
-   gobuster dir -u "http://training" -w /usr/share/wordlists/dirbuster/directory-list-2.3-small.txt 
+   gobuster dir -u "http://<target_url>" -w /usr/share/wordlists/dirbuster/directory-list-2.3-small.txt 
 
    # 拡張子指定でのブルートフォース
-   gobuster dir -u "http://training/wordpress/" -w 
+   gobuster dir -u "http://<target_url>" -w 
    /usr/share/wordlists/dirbuster/directory-list-2.3-small.txt -x .php
 ```
 

