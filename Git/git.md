@@ -6,7 +6,7 @@
     # ローカルにリポジトリを作成し、リモートにプッシュする
     git init
     git add .
-    git commit -, "Initial commit"
+    git commit -m, "Initial commit"
     git remote add origin <remote_repogitory>
     git push -u origin master
     # リモートからクローン
