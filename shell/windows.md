@@ -19,6 +19,23 @@
     tasklist /SVC
 ```
 
+* schtasks
+
+```bat
+    # /S: 接続先リモートシステム
+    # /U: ユーザ名
+    # /P: パスワード
+    # /TN: タスク名
+    # /SC: スケジュール(1回) 
+    # /SD: 開始日
+    # /ST: 開始時刻
+    # /TR: 実行タスク
+    schtasks /Create /S 192.168.xxx.xxx /U <user> /P <password> /TN sample /SC ONCE /SD 1900/01/01 /ST 00:00 /TR C:¥Remote¥test.bat
+
+    # タスクの一覧表示
+    schtasks /query /fo list 
+```
+
 * システム情報
 
 ```bat
