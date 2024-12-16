@@ -52,6 +52,13 @@
     mountvol
 ```
 
+* ドメイン情報
+
+``` bat
+    #　ドメコン名とかの取得
+    nltest /dsgetdc:<domain>
+```
+
 * ping sweep
 
 ``` bat
