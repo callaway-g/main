@@ -62,7 +62,7 @@
 * ping sweep
 
 ``` bat
-    for /l %i in (1,1,255) do @ping -n 1 -w 100 XXX.XXX.XXX.%i | fiond "TTL="
+    for /l %i in (1,1,255) do @ping -n 1 -w 100 XXX.XXX.XXX.%i | find "TTL="
 ```
 
 * ファイル検索
