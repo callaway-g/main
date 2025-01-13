@@ -24,6 +24,8 @@
 * schtasks
 
 ```bat
+    schtasks /?
+    schtasks /Create /?
     # /S: 接続先リモートシステム
     # /U: ユーザ名
     # /P: パスワード
@@ -32,8 +34,15 @@
     # /SD: 開始日
     # /ST: 開始時刻
     # /TR: 実行タスク
+    # /F: 指定したタスクが既に存在する場合、タスクを強制的に作成し、警告を抑制
+    # /RL: ジョブの実行レベルを設定
+    
+    #タスク作成
     schtasks /Create /S 192.168.xxx.xxx /U <user> /P <password> /TN sample /SC ONCE /SD 1900/01/01 /ST 00:00 /TR C:¥Remote¥test.bat
-
+    # タスク実行
+    schtasks /run /tn <タスク名>
+    # タスクの削除
+    schtasks /delete /f /tn <タスク名>
     # タスクの一覧表示(詳細)
     schtasks /query /fo list /v
 ```
@@ -111,6 +120,8 @@
     wmic service get name,displayname,startmode,pathname | findstr /i /v "C:\Windows\\"
     #ファイル検索
     wmic DATAFILE where "drive='C:' AND Name like '%<file_name>%'" GET Name,Readable,size /VALUE
+    #プロセス操作
+    wmic process call create ‘C:¥Windows¥System32¥notepad.exe‘
 ```
 
 * whoami
@@ -145,4 +156,10 @@
 
 ``` powershell
     powershell -Command "Get-WmiObject -class Win32_Share"
+```
+
+* プロセス操作
+
+``` ps
+    Invoke-WmiMethod -Class Win32_Process -Name Create -ArgumentList ‘C:¥Windows¥System32¥notepad.exe’
 ```
