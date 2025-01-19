@@ -1,5 +1,7 @@
 # windows command
 
+## cmd
+
 * net XXX
 
 ``` bat
@@ -162,4 +164,13 @@
 
 ``` ps
     Invoke-WmiMethod -Class Win32_Process -Name Create -ArgumentList ‘C:¥Windows¥System32¥notepad.exe’
+```
+
+* テキスト検索
+
+``` ps
+    #-path 検索ファイルのパス
+    #-pattern 検索するテキスト
+    #passwordを含むテキスト検索
+    Select-String -path .\*\*\* -pattern password
 ```

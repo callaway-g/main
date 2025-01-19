@@ -33,4 +33,5 @@
     sytemctl disable XXX.service
     rm /etc/systemd/system/XXX.service
     systemctl daemon-reload
+    systemctl reset-failed
 ```
