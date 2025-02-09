@@ -1,8 +1,6 @@
-# Lateral Movement
+# Pass The Hash
 
-## Pass The Hash
-
-### 概要
+## 概要
 
 - New technology LAN Manager認証の仕組みを悪用
 - NTLMハッシュ値使用
@@ -12,7 +10,7 @@
 - ドメインユーザのNTLMハッシュはドメコン上のNTDS.ditに保存
 - NTハッシュは平文をMD4でハッシュ化ソルトは付与しないため、同じ平文をMD4でハッシュ化したものと一致する。
 
-#### 手順(mimikatz)
+## 手順(mimikatz)
 
 ※管理者権限が必要
 
@@ -40,7 +38,7 @@ NTLM認証を行った`cmd.exe`起動する。
 
 起動した`cmd.exe`上で`PsExec`を使用することでパスワードなしで別端末にログインできる。
 
-#### Pass The Hashで使用されるツール
+## Pass The Hashで使用されるツール
 
 - evil-winrm
 
